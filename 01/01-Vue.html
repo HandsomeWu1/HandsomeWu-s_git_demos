@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../js/vue.js"></script>
+  <style>
+    .red {
+      color: red;
+      list-style: none;
+
+    }
+
+    li:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <form action="" id="app" @click.prevent>
+    <input type="text" required>
+    <input type="submit">
+  </form>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hello world',
+      },
+      methods: {
+        onsubmit() {
+          console.log(123)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

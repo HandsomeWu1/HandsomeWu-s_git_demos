@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script src="../js/vue.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id='app'>
+    <cpn>
+      <button>传入会覆盖不具名插槽的默认值</button>
+      <button slot="sname"><i>替换了具名插槽</i></button>
+    </cpn>
+    <hr>
+    <cpn></cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <h1>slot使用</h1>
+      <slot name="sname"><b>这是具名插槽的默认值</b></slot>
+      <slot><i>这是默认值</i></slot>
+    </div>
+  </template>
+  <script>
+    const cpn = {
+      template: '#cpn',
+    }
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hello world',
+      },
+      components: {
+        cpn: cpn
+      }
+    })
+  </script>
+</body>
+
+</html>

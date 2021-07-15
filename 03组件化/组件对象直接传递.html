@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script src="../js/vue.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id='app'>
+    <cpn></cpn>
+    <!-- 注册子元素 -->
+    <cpn ref="child"></cpn>
+    <button @click="getChildren()">获取</button>
+  </div>
+  <template id="cpn">
+    <div>
+      <h1>{{cmessage}}</h1>
+    </div>
+  </template>
+  <script>
+    const cpn = {
+      template: '#cpn',
+      props: {
+        cmessage: String
+      },
+      methods: {
+        btnClick(item) {
+          this.$emit('item-click', item)
+        }
+      }
+    }
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hello world',
+      },
+      methods: {
+        getChildren() {
+          console.log(this.$children) //可以获取到所有子元素
+          console.log(this.$refs.child) //只能获取到注册了的子元素，注册过的直接用.name即可获得
+        }
+      },
+      components: {
+        cpn: cpn
+      }
+    })
+  </script>
+</body>
+
+</html>

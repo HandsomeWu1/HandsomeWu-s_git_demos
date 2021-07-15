@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script src="../js/vue.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id='app'>
+    <cpn :cname="name" :cmessage="message" :c-age="age" @item-click="test"></cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <h1>{{cmessage}}</h1>
+      <button @click="btnClick()">+</button>
+    </div>
+  </template>
+  <script>
+    const cpn = {
+      template: '#cpn',
+      props: {
+        cAge: Number,
+        cname: {
+          type: Array,
+          default () {
+            return [1, 2, 3, 4, 5, 6] //Array和对象类型的default值需要使用函数的方式设置
+          }
+        },
+        cmessage: String
+      },
+      methods: {
+        btnClick(item) {
+          this.$emit('item-click', item)
+        }
+      }
+    }
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hello world',
+        name: ['a', 'b'],
+        age: 10
+      },
+      methods: {
+        test() {
+          console.log(event.target)
+        }
+      },
+      components: {
+        cpn: cpn
+      }
+    })
+  </script>
+</body>
+
+</html>

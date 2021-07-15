@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script src="../js/vue.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id='app'>
+    <!-- 原始方式展示数据 -->
+    <cpn></cpn>
+    <!-- 替换方式展示数据 -->
+    <cpn>
+      <!-- vue2.5.x要求写template，版本高的可以不需要 -->
+      <template slot-scope="mehe">
+        <span v-for="item in mehe.data">{{item}} * </span>
+      </template>
+    </cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <slot :data="planguage">
+        <ul>
+          <li v-for="item in planguage">{{item}}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+  <script>
+    const cpn = {
+      template: '#cpn',
+      data() {
+        return {
+          planguage: ["java", "c++", "python"],
+        }
+      }
+    }
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hello world',
+      },
+      components: {
+        cpn: cpn
+      }
+    })
+  </script>
+</body>
+
+</html>

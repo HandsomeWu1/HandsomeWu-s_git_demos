@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <table class="table" id="app">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">名称</th>
+        <th scope="col">价格</th>
+        <th scope="col">购买数量</th>
+        <th scope="col">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(item,index) in goods">
+        <th scope="row">{{index+1}}</th>
+        <td>{{item.name}}</td>
+        <td>{{item.price}}</td>
+        <td>
+          <button @click="minus(index)" :disabled="item.num<=1">-</button>
+          {{item.num}}
+          <button @click="add(index)">+</button>
+        </td>
+        <td><button @click="remove(index)">remove</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        goods: [{
+            name: 'iphone11',
+            price: '99',
+            num: 20
+          },
+          {
+            name: 'p30 pro',
+            price: '999',
+            num: 10
+          },
+          {
+            name: 'sansung',
+            price: '10',
+            num: 1
+          },
+        ]
+      },
+      methods: {
+        add(index) {
+          this.goods[index].num++
+        },
+        minus(index) {
+          this.goods[index].num--
+        },
+        remove(index) {
+          this.goods.splice(index, 1)
+          console.log(123)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
